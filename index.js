@@ -16,7 +16,17 @@ class LinksAdder {
     }
   }
 }
-
+class SocialAdder {
+  element(element) {
+    element.removeAttribute("style")
+    element.append(`<a href="https://www.gatsbyjs.com/"><img style="filter: invert(1);" src="https://simpleicons.org/icons/gatsby.svg" ></a>`, {html: true})
+    element.append(`<a href="https://www.roku.com/"><img style="filter: invert(1);" src="https://simpleicons.org/icons/roku.svg" ></a>`, {html: true})
+    element.append(`<a href="https://slack.com/"><img style="filter: invert(1);" src="https://simpleicons.org/icons/slack.svg" ></a>`, {html: true})
+    element.append(`<a href="https://www.lyft.com/"><img style="filter: invert(1);" src="https://simpleicons.org/icons/lyft.svg" ></a>`, {html: true})
+    element.append(`<a href="https://www.graphql.com/"><img style="filter: invert(1);" src="https://simpleicons.org/icons/graphql.svg" ></a>`, {html: true})
+    element.append(`<a href="https://sass-lang.com/"><img style="filter: invert(1);" src="https://simpleicons.org/icons/sass.svg" ></a>`, {html: true})
+  }
+}
 
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
@@ -42,6 +52,9 @@ async function handleRequest(request) {
     .on('div#profile', {element: e=>e.removeAttribute("style")})
     .on('img#avatar', {element: e=>e.setAttribute("src", dogURL)})
     .on('h1#name', {element: e=>e.setInnerContent("Aaron")})
+    .on('div#social', new SocialAdder())  
+    .on('title', {element: e=>e.setInnerContent("Aaron")})  
+    .on('body', {element: e=>e.setAttribute("class", "bg-blue-700")})  
   const result = await rewriter.transform(await fetch(targetURL, init)).text()
   return new Response(result, {
     headers: { 'content-type': "text/html" }
