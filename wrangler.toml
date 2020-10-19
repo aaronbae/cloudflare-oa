@@ -1,6 +1,6 @@
 name = "cloudflare-oa"
 type = "javascript"
-account_id = ""
+account_id = "d570ff4bd7063a1671ce0f22810354ad"
 workers_dev = true
 route = ""
 zone_id = ""
